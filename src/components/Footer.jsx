@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router";
 
 const Footer = () => {
   return (
@@ -56,11 +57,11 @@ const Footer = () => {
           <div className="flex flex-col items-start">
             <h2 className="text-[20px] mb-6">Account</h2>
             <ul className="flex flex-col gap-4">
-              <li>My Account</li>
-              <li>Login / Register</li>
-              <li>Cart</li>
-              <li>Wishlist</li>
-              <li>Shop</li>
+              <NavLink to={`/account`}>My Account</NavLink>
+              <NavLink to={`/login`}>Login / Register</NavLink>
+              <NavLink to={`/cart`}>Cart</NavLink>
+              <NavLink to={`/wishlist`}>Wishlist</NavLink>
+              <NavLink to={`/shop`}>Shop</NavLink>
             </ul>
           </div>
 
@@ -68,10 +69,10 @@ const Footer = () => {
           <div className="flex flex-col items-start">
             <h2 className="text-[20px] mb-6">Quick Links</h2>
             <ul className="flex flex-col gap-4">
-              <li>Privacy Policy</li>
-              <li>Terms Of Use</li>
-              <li>FAQ</li>
-              <li>Contact</li>
+              <NavLink to={`/privacy`}>Privacy Policy</NavLink>
+              <NavLink to={`/usage`}>Terms Of Use</NavLink>
+              <NavLink to={`/faq`}>FAQ</NavLink>
+              <NavLink to={`/contact`}>Contact</NavLink>
             </ul>
           </div>
 

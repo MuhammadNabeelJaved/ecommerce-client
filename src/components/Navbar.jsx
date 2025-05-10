@@ -91,25 +91,25 @@ const Navbar = () => {
           <ul className="flex items-center gap-12 flex-wrap">
             <NavLink
               to={`/`}
-              className="cursor-pointer font-poppins text-black"
+              className="cursor-pointer font-poppins text-black hover:text-gray-600 transition-colors"
             >
               Home
             </NavLink>
             <NavLink
               to={`/contact`}
-              className="cursor-pointer font-poppins text-black"
+              className="cursor-pointer font-poppins text-black hover:text-gray-600 transition-colors"
             >
               Contact
             </NavLink>
             <NavLink
               to={`/about`}
-              className="cursor-pointer font-poppins text-black"
+              className="cursor-pointer font-poppins text-black hover:text-gray-600 transition-colors"
             >
               About
             </NavLink>
             <NavLink
               to={`/register`}
-              className="cursor-pointer font-poppins text-black"
+              className="cursor-pointer font-poppins text-black hover:text-gray-600 transition-colors"
             >
               Sign Up
             </NavLink>
