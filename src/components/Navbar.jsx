@@ -83,7 +83,7 @@ const Navbar = () => {
       </div>
 
       {/* Desktop Navbar */}
-      <div className="md:flex flex-wrap justify-evenly gap-2 items-center hidden p-4 border-b-2 border-gray-300">
+      <div className="md:flex max-w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-[135px] flex-wrap justify-between gap-2 items-center hidden p-4 border-b-2 border-gray-300">
         <h2 className="cursor-pointer font-poppins font-bold text-2xl">
           Exclusive
         </h2>

@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <>
       <footer className="bg-black flex gap-16 flex-col justify-center items-center font-poppins text-[#FAFAFA] py-5">
-        <div className="flex max-w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-[135px] justify-center flex-wrap items-center gap-[90px]">
+        <div className="flex justify-between w-full max-w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-[135px] flex-wrap items-start">
           {/* First Column */}
           <div className="flex flex-col items-start">
             <h1 className="text-2xl font-bold font-poppins mb-6">Exclusive</h1>

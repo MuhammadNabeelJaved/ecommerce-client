@@ -14,11 +14,16 @@ import Login from "./pages/Login.jsx";
 import Register from "./pages/SignUp.jsx";
 import ProductDetails from "./pages/Product.jsx";
 
+// w-full max-w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-[135px]
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
     children: [
+      {
+        path: "/",
+        element: <App />,
+      },
       {
         path: "/cart",
         element: <Cart />,
