@@ -7,31 +7,31 @@ import iPhone from "../assets/iphone.jpg";
 const PrevArrow = ({ onClick }) => (
   <button
     onClick={onClick}
-    className="absolute border-[1px] border-amber-50 cursor-pointer left-4 top-1/2 z-10 -translate-y-1/2 rounded-full bg-gray-800/30 p-2 text-white hover:bg-gray-800/50"
+    className="absolute left-2 sm:left-4 top-1/2 z-10 -translate-y-1/2 rounded-full bg-gray-800/30 p-1 sm:p-2 text-white hover:bg-gray-800/50 border border-white/50"
     aria-label="Previous slide"
   >
-    <ChevronLeft size={20} />
+    <ChevronLeft size={16} className="sm:w-5 sm:h-5" />
   </button>
 );
 
 const NextArrow = ({ onClick }) => (
   <button
     onClick={onClick}
-    className="absolute border-[1px] border-amber-50 cursor-pointer right-4 top-1/2 z-10 -translate-y-1/2 rounded-full bg-gray-800/30 p-2 text-white hover:bg-gray-800/50"
+    className="absolute right-2 sm:right-4 top-1/2 z-10 -translate-y-1/2 rounded-full bg-gray-800/30 p-1 sm:p-2 text-white hover:bg-gray-800/50 border border-white/50"
     aria-label="Next slide"
   >
-    <ChevronLeft size={20} className="rotate-180" />
+    <ChevronRight size={16} className="sm:w-5 sm:h-5" />
   </button>
 );
 
 // Dot indicator component
 const Indicator = ({ count, activeIndex }) => (
-  <div className="absolute cursor-pointer bottom-6 left-1/2 flex -translate-x-1/2 space-x-2">
+  <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 space-x-1 sm:space-x-2">
     {[...Array(count)].map((_, i) => (
       <div
         key={i}
-        className={`h-1.5 w-1.5 rounded-full transition-all duration-300 ${
-          i === activeIndex ? "w-4 bg-white" : "bg-white/50"
+        className={`h-1 sm:h-1.5 rounded-full transition-all duration-300 ${
+          i === activeIndex ? "w-3 sm:w-4 bg-white" : "w-1 sm:w-1.5 bg-white/50"
         }`}
       />
     ))}
@@ -40,7 +40,23 @@ const Indicator = ({ count, activeIndex }) => (
 
 const HeroSlider = () => {
   const [activeSlide, setActiveSlide] = useState(0);
-  const [productSlides, setProductSlides] = useState([]);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  // Track screen size for responsive adjustments
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsSmallScreen(window.innerWidth < 640);
+    };
+
+    // Initial check
+    checkScreenSize();
+
+    // Add event listener
+    window.addEventListener("resize", checkScreenSize);
+
+    // Cleanup
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
 
   const slides = [
     {
@@ -107,22 +123,33 @@ const HeroSlider = () => {
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
     beforeChange: (current, next) => setActiveSlide(next),
+    swipe: true,
+    responsive: [
+      {
+        breakpoint: 640,
+        settings: {
+          arrows: false, // Hide arrows on smaller screens
+          swipe: true,
+        },
+      },
+    ],
   };
 
   return (
-    <div className="relative mb-10 md:mb-36 w-full max-w-full mx-auto overflow-hidden">
+    <div className="relative w-full max-w-full mx-auto overflow-hidden mb-8 sm:mb-10 md:mb-24 lg:mb-36">
       <Slider {...settings} className="hero-slider">
         {slides.map((slide) => (
           <div key={slide.id}>
             <div
-              className={`relative flex h-64 w-full items-center ${slide.bgColor} ${slide.textColor} md:h-80 lg:h-96`}
+              className={`relative flex flex-col sm:flex-row h-[400px] xs:h-[450px] sm:h-64 md:h-80 lg:h-96 w-full ${slide.bgColor} ${slide.textColor}`}
             >
-              <div className="z-10 ml-8 flex w-1/2 flex-col space-y-3 pl-4 md:ml-16">
+              {/* Content Section - Full width on mobile, half width on larger screens */}
+              <div className="z-10 px-4 sm:px-0 sm:ml-4 md:ml-8 lg:ml-16 flex flex-col justify-center pt-8 sm:pt-0 sm:w-1/2 space-y-2 sm:space-y-3">
                 <div className="flex items-center">
                   {slide.id === 1 && (
                     <div className="mr-2">
                       <svg
-                        className="h-6 w-6"
+                        className="h-5 w-5 sm:h-6 sm:w-6"
                         viewBox="0 0 24 24"
                         fill="currentColor"
                       >
@@ -130,21 +157,21 @@ const HeroSlider = () => {
                       </svg>
                     </div>
                   )}
-                  <p className="text-sm font-medium md:text-base">
+                  <p className="text-xs sm:text-sm md:text-base font-medium">
                     {slide.subtitle}
                   </p>
                 </div>
-                <h2 className="text-2xl font-bold md:text-3xl lg:text-4xl">
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">
                   {slide.title}
                 </h2>
-                <div className="flex items-center pt-2">
+                <div className="flex items-center pt-1 sm:pt-2">
                   <a
                     href="#"
-                    className="group flex items-center text-sm font-medium md:text-base"
+                    className="group flex items-center text-xs sm:text-sm md:text-base font-medium"
                   >
                     {slide.cta}
                     <svg
-                      className="ml-1 h-4 w-4 transform transition-transform group-hover:translate-x-1"
+                      className="ml-1 h-3 w-3 sm:h-4 sm:w-4 transform transition-transform group-hover:translate-x-1"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -159,16 +186,20 @@ const HeroSlider = () => {
                   </a>
                 </div>
               </div>
+
+              {/* Image Section - Full width on mobile below text, half width and right-aligned on larger screens */}
               <div
-                className={`absolute right-0 top-0 h-full w-1/2 ${
+                className={`absolute bottom-0 sm:bottom-auto sm:right-0 sm:top-0 h-2/3 sm:h-full w-full sm:w-1/2 ${
                   slide.productImage ? "flex items-center justify-center" : ""
                 }`}
               >
                 <img
                   src={slide.image}
                   alt={slide.title}
-                  className={`h-full w-full object-cover ${
-                    slide.productImage ? "object-contain p-4" : "object-cover"
+                  className={`h-full w-full ${
+                    slide.productImage
+                      ? "object-contain p-2 sm:p-4"
+                      : "object-cover"
                   }`}
                 />
               </div>
