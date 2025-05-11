@@ -137,11 +137,11 @@ const HeroSlider = () => {
 
   return (
     <div className="relative w-full max-w-full mx-auto overflow-hidden mb-8 sm:mb-10 md:mb-24 lg:mb-36">
-      <Slider {...settings} className="hero-slider">
+      <Slider {...settings} className="hero-slider ">
         {slides.map((slide) => (
           <div key={slide.id}>
             <div
-              className={`relative flex flex-col sm:flex-row h-[400px] xs:h-[450px] sm:h-64 md:h-80 lg:h-96 w-full ${slide.bgColor} ${slide.textColor}`}
+              className={`relative w-full max-w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-[135px] flex flex-col sm:flex-row h-[400px] xs:h-[450px] sm:h-64 md:h-80 lg:h-96 ${slide.bgColor} ${slide.textColor}`}
             >
               {/* Content Section - Full width on mobile, half width on larger screens */}
               <div className="z-10 px-4 sm:px-0 sm:ml-4 md:ml-8 lg:ml-16 flex flex-col justify-center pt-8 sm:pt-0 sm:w-1/2 space-y-2 sm:space-y-3">
