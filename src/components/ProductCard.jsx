@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import ViewAllProductButton from "./ViewAllProductButton";
 
-const ProductCard = ({ products, arrowState, category }) => {
+const ProductCard = ({ productsData, arrowState, category }) => {
   const [currentProducts, setCurrentProducts] = useState([]);
   const [activeSlide, setActiveSlide] = useState(0);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -37,47 +37,53 @@ const ProductCard = ({ products, arrowState, category }) => {
   };
   useEffect(() => {
     // Shuffle the products array
-    const shuffledProducts = [...products].sort(() => Math.random() - 0.5);
+    const shuffledProducts = [...productsData].sort(() => Math.random() - 0.5);
 
     // Select the first 4 products
     const selectedProducts = shuffledProducts.slice(0, 4);
 
     if (category === "all") {
-      setCurrentProducts(products);
+      setCurrentProducts(productsData);
     } else if (category === "featured") {
-      const featuredProducts = products.filter((product) => product.featured);
+      const featuredProducts = productsData.filter(
+        (product) => product.featured
+      );
       setCurrentProducts(featuredProducts);
     } else if (category === "best") {
-      const bestProducts = products.filter((product) => product.best);
+      const bestProducts = productsData.filter((product) => product.best);
       setCurrentProducts(bestProducts);
     } else if (category === "sale") {
-      const saleProducts = products.filter((product) => product.sale);
+      const saleProducts = productsData.filter((product) => product.sale);
       setCurrentProducts(saleProducts);
     } else if (category === "new") {
-      const newProducts = products.filter((product) => product.new);
+      const newProducts = productsData.filter((product) => product.new);
       setCurrentProducts(newProducts);
     } else if (category === "popular") {
-      const popularProducts = products.filter((product) => product.popular);
+      const popularProducts = productsData.filter((product) => product.popular);
       setCurrentProducts(popularProducts);
     } else if (category === "trending") {
-      const trendingProducts = products.filter((product) => product.trending);
+      const trendingProducts = productsData.filter(
+        (product) => product.trending
+      );
       setCurrentProducts(trendingProducts);
     } else if (category === "random") {
-      const randomProducts = products.filter((product) => product.random);
+      const randomProducts = productsData.filter((product) => product.random);
       setCurrentProducts(randomProducts);
     } else if (category === "discount") {
-      const discountProducts = products.filter((product) => product.discount);
+      const discountProducts = productsData.filter(
+        (product) => product.discount
+      );
       setCurrentProducts(discountProducts);
     } else if (category === "latest") {
-      const latestProducts = products.filter((product) => product.latest);
+      const latestProducts = productsData.filter((product) => product.latest);
       setCurrentProducts(latestProducts);
     } else if (category === "top") {
-      const topProducts = products.filter((product) => product.top);
+      const topProducts = productsData.filter((product) => product.top);
       setCurrentProducts(topProducts);
     } else {
       setCurrentProducts(selectedProducts);
     }
-  }, [products]);
+  }, [productsData]);
   return (
     <>
       <div className="w-full max-w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-[135px]">
@@ -119,8 +125,9 @@ const ProductCard = ({ products, arrowState, category }) => {
               </div>
             </div>
           ))}
-        <ViewAllProductButton title="View All Products" />
+          <ViewAllProductButton title="View All Products" />
         </div>
+        <hr />
       </div>
     </>
   );

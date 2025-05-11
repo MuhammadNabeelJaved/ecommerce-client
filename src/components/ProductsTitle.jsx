@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard.jsx";
-import productsData from "../data/productsData.js";
 
 const ProductsTitle = ({
   title,
@@ -10,6 +9,7 @@ const ProductsTitle = ({
   category,
   timer,
   percent,
+  productsData,
 }) => {
   const [products, setProducts] = useState([]);
   const [arrowState, setArrowState] = useState("");
@@ -111,11 +111,13 @@ const ProductsTitle = ({
           </div>
         </div>
       </div>
-      <ProductCard
-        products={productsData}
-        arrowState={arrowState}
-        category={category}
-      />
+      {productsData && (
+        <ProductCard
+          productsData={productsData}
+          arrowState={arrowState}
+          category={category}
+        />
+      )}
     </>
   );
 };
