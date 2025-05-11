@@ -1,22 +1,20 @@
 import React, { useEffect, useState } from "react";
-import ProductCard from "./ProductCard";
+import ProductCard from "./ProductCard.jsx";
 import productsData from "../data/productsData.js";
 
-const SalesTimer = () => {
+const ProductsTitle = ({
+  title,
+  subtitle,
+  offer,
+  tagline,
+  category,
+  timer,
+  percent,
+}) => {
   const [products, setProducts] = useState([]);
   const [arrowState, setArrowState] = useState("");
 
   console.log(arrowState);
-
-  useEffect(() => {
-    // Shuffle the products array
-    const shuffledProducts = [...productsData].sort(() => Math.random() - 0.5);
-
-    // Select the first 4 products
-    const selectedProducts = shuffledProducts.slice(0, 4);
-
-    setProducts(selectedProducts);
-  }, [productsData]);
 
   return (
     <>
@@ -111,9 +109,13 @@ const SalesTimer = () => {
           </div>
         </div>
       </div>
-      <ProductCard products={products} arrowState={arrowState} />
+      <ProductCard
+        products={productsData}
+        arrowState={arrowState}
+        category={category}
+      />
     </>
   );
 };
 
-export default SalesTimer;
+export default ProductsTitle;
