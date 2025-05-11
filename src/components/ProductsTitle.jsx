@@ -4,7 +4,7 @@ import productsData from "../data/productsData.js";
 
 const ProductsTitle = ({
   title,
-  subtitle,
+  topTitle,
   offer,
   tagline,
   category,
@@ -33,40 +33,42 @@ const ProductsTitle = ({
                   <rect width="20" height="40" rx="4" fill="#DB4444" />
                 </svg>
                 <p className="text-[#DB4444] font-poppins font-[600]">
-                  Today’s
+                  {topTitle}
                 </p>
               </div>
               <div>
                 <h2 className="text-2xl md:text-4xl font-bold font-poppins tracking-[1.44px]">
-                  Flash Sales
+                  {title}
                 </h2>
-                <h2>Up to 70% off</h2>
+                <h2>{percent}</h2>
                 <p className="text-[#B7B7B7] text-[16px] font-poppins font-[400]">
-                  Limited time offer
+                  {tagline}
                 </p>
               </div>
             </div>
-            <div className="text-[#000] text-2xl md:text-4xl font-poppins font-[700] tracking-[1.28px] flex gap-5 items-end">
-              <p className="flex items-start flex-col justify-center gap-2">
-                <span className="text-black text-[12px]">Days</span>
-                <span>30</span>
-              </p>
-              <span className="text-[#E07575]">:</span>
-              <p className="flex items-start flex-col justify-center gap-2">
-                <span className="text-black text-[12px]">Hours</span>
-                <span>30</span>
-              </p>
-              <span className="text-[#E07575]">:</span>
-              <p className="flex items-start flex-col justify-center gap-2">
-                <span className="text-black text-[12px]">Minutes</span>
-                <span>30</span>
-              </p>
-              <span className="text-[#E07575]">:</span>
-              <p className="flex items-start flex-col justify-center gap-2">
-                <span className="text-black text-[12px]">Seconds</span>
-                <span>30</span>
-              </p>
-            </div>
+            {timer && (
+              <div className="text-[#000] text-2xl md:text-4xl font-poppins font-[700] tracking-[1.28px] flex gap-5 items-end">
+                <p className="flex items-start flex-col justify-center gap-2">
+                  <span className="text-black text-[12px]">Days</span>
+                  <span>30</span>
+                </p>
+                <span className="text-[#E07575]">:</span>
+                <p className="flex items-start flex-col justify-center gap-2">
+                  <span className="text-black text-[12px]">Hours</span>
+                  <span>30</span>
+                </p>
+                <span className="text-[#E07575]">:</span>
+                <p className="flex items-start flex-col justify-center gap-2">
+                  <span className="text-black text-[12px]">Minutes</span>
+                  <span>30</span>
+                </p>
+                <span className="text-[#E07575]">:</span>
+                <p className="flex items-start flex-col justify-center gap-2">
+                  <span className="text-black text-[12px]">Seconds</span>
+                  <span>30</span>
+                </p>
+              </div>
+            )}
           </div>
           <div className="flex items-center justify-start gap-2">
             <svg

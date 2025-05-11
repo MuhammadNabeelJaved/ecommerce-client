@@ -1,141 +1,47 @@
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import ViewAllProductButton from "./ViewAllProductButton";
 
 const ProductCard = ({ products, arrowState, category }) => {
   const [currentProducts, setCurrentProducts] = useState([]);
   const [activeSlide, setActiveSlide] = useState(0);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
-  console.log("Current Products", currentProducts);
-
-  // Custom arrow components
-  const PrevArrow = (props) => {
-    const { className, style, onClick } = props;
-    return (
-      <button
-        className={`${className} custom-prev-arrow`}
-        style={{ ...style, display: "block", zIndex: 1 }}
-        onClick={onClick}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-        >
-          <path
-            d="M15 19L8 12L15 5"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </button>
-    );
-  };
-
-  const NextArrow = (props) => {
-    const { className, style, onClick } = props;
-    return (
-      <button
-        className={`${className} custom-next-arrow`}
-        style={{ ...style, display: "block", zIndex: 1 }}
-        onClick={onClick}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-        >
-          <path
-            d="M9 5L16 12L9 19"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </button>
-    );
-  };
-
-  useEffect(() => {
-    const checkScreenSize = () => {
-      setIsSmallScreen(window.innerWidth < 640);
-    };
-
-    // Check on mount
-    checkScreenSize();
-
-    // Add resize listener
-    window.addEventListener("resize", checkScreenSize);
-
-    // Clean up
-    return () => window.removeEventListener("resize", checkScreenSize);
-  }, []);
-
-  // Handle manual arrow clicks
-  useEffect(() => {
-    if (arrowState === "left" && slider) {
-      slider.slickPrev();
-    }
-    if (arrowState === "right" && slider) {
-      slider.slickNext();
-    }
-  }, [arrowState]);
-
+  console.log(activeSlide);
+  if (arrowState === "left") {
+  }
+  if (arrowState === "right") {
+  }
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1, // Changed from 1 to 4
-    // autoplay: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
     autoplaySpeed: 5000,
     pauseOnHover: true,
-    prevArrow: <PrevArrow />,
-    nextArrow: <NextArrow />,
+    prevArrow: activeSlide,
+    nextArrow: activeSlide,
     beforeChange: (current, next) => setActiveSlide(next),
     swipe: true,
     responsive: [
       {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3, // Changed from 1 to 3
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2, // Changed from 1 to 2
-          autoplay: true,
-        },
-      },
-      {
         breakpoint: 640,
         settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          arrows: false,
-          autoplay: true,
+          arrows: false, // Hide arrows on smaller screens
+          swipe: true,
         },
       },
     ],
   };
-
-  // Reference to the slider
-  let slider = null;
-
   useEffect(() => {
-    // Filter products based on category
+    // Shuffle the products array
+    const shuffledProducts = [...products].sort(() => Math.random() - 0.5);
+
+    // Select the first 4 products
+    const selectedProducts = shuffledProducts.slice(0, 4);
+
     if (category === "all") {
       setCurrentProducts(products);
     } else if (category === "featured") {
@@ -169,33 +75,31 @@ const ProductCard = ({ products, arrowState, category }) => {
       const topProducts = products.filter((product) => product.top);
       setCurrentProducts(topProducts);
     } else {
-      // Shuffle the products array for random selection
-      const shuffledProducts = [...products].sort(() => Math.random() - 0.5);
-      // Select the first 4 products
-      const selectedProducts = shuffledProducts.slice(0, 4);
-      setCurrentProducts(products);
+      setCurrentProducts(selectedProducts);
     }
-  }, [products, category]);
-
+  }, [products]);
   return (
-    <div className="w-full max-w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-[135px]">
-      <Slider {...settings} ref={(c) => (slider = c)}>
-        {currentProducts.map((product) => (
-          <div key={product.id} className="px-2">
-            <div className="flex max-w-2xs flex-col items-start gap-5 justify-center">
+    <>
+      <div className="w-full max-w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-[135px]">
+        <div className="flex items-center flex-wrap gap-5 justify-center md:gap-8">
+          {currentProducts.map((product) => (
+            <div
+              key={product.id}
+              className="flex max-w-2xs flex-col items-start gap-5 justify-center"
+            >
               <div className="w-full h-48 overflow-hidden bg-gray-200 flex items-center justify-center">
                 <img
                   src={product.image}
                   alt={product.title}
-                  className="w-full h-auto object-cover"
+                  className="w-full h-auto"
                 />
               </div>
               <div className="flex items-start flex-col justify-between w-full gap-2">
-                <h3 className="text-lg font-[500]">{product.title}</h3>
+                <h3 className="text-lg  font-[500]">{product.title}</h3>
                 <p className="text-[#DB4444]">
-                  ${product.price} <s className="text-gray-400">$100</s>
+                  ${product.price} <s className="text-gray-400">$ 100</s>
                 </p>
-                <p className="flex items-center justify-center gap-2 font-[600]">
+                <p className="flex items-center justify-center gap-2  font-[600]">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
@@ -214,10 +118,11 @@ const ProductCard = ({ products, arrowState, category }) => {
                 </p>
               </div>
             </div>
-          </div>
-        ))}
-      </Slider>
-    </div>
+          ))}
+        <ViewAllProductButton title="View All Products" />
+        </div>
+      </div>
+    </>
   );
 };
 

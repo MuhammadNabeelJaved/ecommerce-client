@@ -6,7 +6,15 @@ const Home = () => {
   return (
     <>
       <Hero />
-      <ProductsTitle />
+      <ProductsTitle
+        title="Flash Sales"
+        topTitle="Today's Deals"
+        offer="Up to 50% off"
+        tagline="Limited time offer"
+        category="New Arrivals"
+        timer="00:00:00"
+        percent="Up to 50% off"
+      />
     </>
   );
 };
