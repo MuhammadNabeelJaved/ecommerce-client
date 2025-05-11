@@ -1,6 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import ProductCard from "./ProductCard";
+import productsData from "../data/productsData.js";
 
 const SalesTimer = () => {
+  const [products, setProducts] = useState([]);
+  const [arrowState, setArrowState] = useState("");
+
+  console.log(arrowState);
+
+  useEffect(() => {
+    // Shuffle the products array
+    const shuffledProducts = [...productsData].sort(() => Math.random() - 0.5);
+
+    // Select the first 4 products
+    const selectedProducts = shuffledProducts.slice(0, 4);
+
+    setProducts(selectedProducts);
+  }, [productsData]);
+
   return (
     <>
       <div className="w-full font-poppins max-w-full mt-10 mb-10 mx-auto px-4 sm:px-6 md:px-8 lg:px-[135px]">
@@ -55,6 +72,7 @@ const SalesTimer = () => {
           </div>
           <div className="flex items-center justify-start gap-2">
             <svg
+              onClick={() => setArrowState("left")}
               className="cursor-pointer"
               width="46"
               height="46"
@@ -73,6 +91,7 @@ const SalesTimer = () => {
             </svg>
 
             <svg
+              onClick={() => setArrowState("right")}
               className="cursor-pointer"
               width="46"
               height="46"
@@ -92,6 +111,7 @@ const SalesTimer = () => {
           </div>
         </div>
       </div>
+      <ProductCard products={products} arrowState={arrowState} />
     </>
   );
 };
