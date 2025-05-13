@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ProductsTitle from "./ProductsTitle";
 import phone from "../assets/Category-CellPhone.png";
 import computer from "../assets/Category-Computer.png";
@@ -8,6 +8,9 @@ import headphones from "../assets/Category-Headphone.png";
 import SmartWatch from "../assets/Category-SmartWatch.png";
 
 const Categories = () => {
+  const [selectedCategory, setSelectedCategory] = useState(false);
+  const [activeCategory, setActiveCategory] = useState(null);
+
   const categories = [
     { title: "Phones", icon: phone },
     { title: "Computers", icon: computer },
@@ -16,10 +19,14 @@ const Categories = () => {
     { title: "HeadPhones", icon: headphones },
     { title: "Gaming", icon: gaming },
   ];
+
   const selectCategory = (category) => {
     // Handle category selection logic here
+    setSelectedCategory(true);
+    setActiveCategory(category);
     console.log("Selected category:", category);
   };
+
   return (
     <>
       <ProductsTitle title="Browse By Category" topTitle="Categories" />
@@ -30,7 +37,11 @@ const Categories = () => {
               <div
                 onClick={() => selectCategory(category.title)}
                 key={index}
-                className="flex justify-center max-w-[170px] max-h-[145px] items-center px-14 py-6 border-[1px] border-[rgba(0, 0, 0, 0.30] rounded-[4px] cursor-pointer hover:bg-[#DB4444] hover:text-white transition duration-300 ease-in-out"
+                className={`flex justify-center max-w-[170px] max-h-[145px] items-center px-14 py-6 border-[1px] border-[rgba(0, 0, 0, 0.30] rounded-[4px] cursor-pointer transition duration-300 ease-in-out ${
+                  selectedCategory && activeCategory === category.title
+                    ? "bg-[#DB4444] text-white"
+                    : "hover:bg-[#DB4444] hover:text-white"
+                }`}
               >
                 <div className="flex justify-center flex-col gap-4 items-center">
                   <img className="w-[56px]" src={category.icon} alt="" />
