@@ -1,5 +1,6 @@
 import BestProducts from "../components/BestProducts.jsx";
 import Categories from "../components/Categories.jsx";
+import FeaturedProduct from "../components/FeaturedProduct.jsx";
 import Features from "../components/Features.jsx";
 import Hero from "../components/Hero.jsx";
 import ProductHero from "../components/ProductHero.jsx";
@@ -32,7 +33,8 @@ const Home = () => {
         arrow={true}
       />
       <ProductsTitle title="New Arrival" topTitle="Featured" />
-      <Features/>
+      <FeaturedProduct/>
+      <Features />
     </>
   );
 };
