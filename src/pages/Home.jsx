@@ -1,5 +1,6 @@
 import BestProducts from "../components/BestProducts.jsx";
 import Categories from "../components/Categories.jsx";
+import Features from "../components/Features.jsx";
 import Hero from "../components/Hero.jsx";
 import ProductHero from "../components/ProductHero.jsx";
 import SalesTimer from "../components/ProductsTitle.jsx";
@@ -23,7 +24,15 @@ const Home = () => {
       />
       <Categories />
       <BestProducts />
-      <ProductHero/>
+      <ProductHero />
+      <ProductsTitle
+        title="Explore Our Products"
+        topTitle="Our Products"
+        productsData={productsData}
+        arrow={true}
+      />
+      <ProductsTitle title="New Arrival" topTitle="Featured" />
+      <Features/>
     </>
   );
 };

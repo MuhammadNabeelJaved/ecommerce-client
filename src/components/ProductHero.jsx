@@ -4,7 +4,7 @@ import boomBox from "../assets/BOOMBOX.png";
 const ProductHero = () => {
   return (
     <>
-      <div className="w-full max-w-full mx-auto mb-8 px-4 sm:px-6 md:px-8 lg:px-[135px]">
+      <div className="w-full max-w-full mx-auto mb-20 px-4 sm:px-6 md:px-8 lg:px-[135px]">
         <div className="flex items-center font-poppins px-14 py-16 flex-wrap text-white bg-black justify-center gap-5 md:gap-28 w-full">
           <div className="flex flex-col items-start gap-8 w-1/2">
             <p className="text-[#0F6]">Categories</p>
