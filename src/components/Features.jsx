@@ -27,7 +27,7 @@ const Features = () => {
   return (
     <>
       <div className="w-full max-w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-[135px]">
-        <div className="flex items-center justify-center flex-wrap gap-[88px]">
+        <div className="flex items-center mb-32 justify-center flex-wrap gap-[88px]">
           {features.map((feature) => (
             <div
               key={feature.id}
