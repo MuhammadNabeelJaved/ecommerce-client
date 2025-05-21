@@ -14,8 +14,56 @@ const ProductsTitle = ({
 }) => {
   const [products, setProducts] = useState([]);
   const [arrowState, setArrowState] = useState("");
+  const [timeRemaining, setTimeRemaining] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  });
 
-  console.log(arrowState);
+  // Timer logic
+  useEffect(() => {
+    // Only run if timer prop is true
+    if (!timer) return;
+    
+    // Set the end date (you can modify this to accept a dynamic end date)
+    const endDate = new Date();
+    // Add 7 days to current date for demo purposes
+    endDate.setDate(endDate.getDate() + 7);
+    
+    const calculateTimeRemaining = () => {
+      const now = new Date();
+      const difference = endDate - now;
+      
+      // If timer has ended
+      if (difference <= 0) {
+        setTimeRemaining({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        return;
+      }
+      
+      // Calculate time units
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+      
+      setTimeRemaining({ days, hours, minutes, seconds });
+    };
+    
+    // Calculate initial time
+    calculateTimeRemaining();
+    
+    // Set up interval to update every second
+    const intervalId = setInterval(calculateTimeRemaining, 1000);
+    
+    // Clean up interval on component unmount
+    return () => clearInterval(intervalId);
+  }, [timer]);
+
+  // Helper function to format time with leading zeros
+  const formatTime = (time) => {
+    return time < 10 ? `0${time}` : time;
+  };
 
   return (
     <>
@@ -51,22 +99,22 @@ const ProductsTitle = ({
               <div className="text-[#000] text-2xl md:text-4xl font-poppins font-[700] tracking-[1.28px] flex gap-5 items-end">
                 <p className="flex items-start flex-col justify-center gap-2">
                   <span className="text-black text-[12px]">Days</span>
-                  <span>30</span>
+                  <span>{formatTime(timeRemaining.days)}</span>
                 </p>
                 <span className="text-[#E07575]">:</span>
                 <p className="flex items-start flex-col justify-center gap-2">
                   <span className="text-black text-[12px]">Hours</span>
-                  <span>30</span>
+                  <span>{formatTime(timeRemaining.hours)}</span>
                 </p>
                 <span className="text-[#E07575]">:</span>
                 <p className="flex items-start flex-col justify-center gap-2">
                   <span className="text-black text-[12px]">Minutes</span>
-                  <span>30</span>
+                  <span>{formatTime(timeRemaining.minutes)}</span>
                 </p>
                 <span className="text-[#E07575]">:</span>
                 <p className="flex items-start flex-col justify-center gap-2">
                   <span className="text-black text-[12px]">Seconds</span>
-                  <span>30</span>
+                  <span>{formatTime(timeRemaining.seconds)}</span>
                 </p>
               </div>
             )}
@@ -86,9 +134,9 @@ const ProductsTitle = ({
                 <path
                   d="M22 16L15 23L22 30M15 23H31"
                   stroke="black"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
 
@@ -105,9 +153,9 @@ const ProductsTitle = ({
                 <path
                   d="M14.5 23H31M31 23L24 16M31 23L24 30"
                   stroke="black"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
             </div>
