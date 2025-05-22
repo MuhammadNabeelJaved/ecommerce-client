@@ -8,7 +8,7 @@ const FeaturedProduct = () => {
       <div className="w-full max-w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-[135px]">
         <div className="flex items-center justify-between mb-32 flex-wrap gap-8 ">
           <div className="w-[48%] h-[600px] flex items-end justify-center overflow-hidden bg-black text-white">
-            <div className="flex justify-center relative z-10 left-[10%] p-8 items-start flex-col gap-4">
+            <div className="flex justify-center p-8 items-start flex-col gap-4">
               <h1 className="text-2xl font-bold font-poppins">Playstation 5</h1>
               <p className="text-[14px] font-poppins">
                 Black and White version of the PS5 coming out on sale.

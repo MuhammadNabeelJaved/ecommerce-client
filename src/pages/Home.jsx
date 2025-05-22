@@ -32,8 +32,8 @@ const Home = () => {
         productsData={productsData}
         arrow={true}
       />
-      <ProductsTitle title="New Arrival" topTitle="Featured" />
-      <FeaturedProduct/>
+      {/* <ProductsTitle title="New Arrival" topTitle="Featured" />
+      <FeaturedProduct /> */}
       <Features />
     </>
   );
