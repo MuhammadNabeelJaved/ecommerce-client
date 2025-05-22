@@ -78,7 +78,7 @@ const Form = () => {
             alt=""
           />
         </div>
-        
+
         {/* Form - Full width on mobile/tablet, 40% on laptop+ */}
         <div className="flex justify-center items-center w-full lg:w-[40%] order-1 lg:order-2">
           <form

@@ -1,8 +1,49 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router";
+import userIcon from "../assets/user.png";
+import cancellIcon from "../assets/cancell.png";
+import orderIcon from "../assets/orders.png";
+import reviewIcon from "../assets/reviews.png";
+import logoutIcon from "../assets/logout.png";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [user, setUser] = useState(true);
+  const [accountDropdown, setaccountDropdown] = useState(false);
+  const [mobileAccountDropdown, setMobileAccountDropdown] = useState(false);
+
+  const accountDropdownDetail = [
+    {
+      id: 1,
+      icon: userIcon,
+      name: "Manage My Account",
+      link: "/profile",
+    },
+    {
+      id: 1,
+      icon: orderIcon,
+      name: "My Order",
+      link: "/orders",
+    },
+    {
+      id: 1,
+      icon: cancellIcon,
+      name: "My Cancellations",
+      link: "/cancellations",
+    },
+    {
+      id: 1,
+      icon: reviewIcon,
+      name: "My Reviews",
+      link: "/reviews",
+    },
+    {
+      id: 1,
+      icon: logoutIcon,
+      name: "Logout",
+      link: "/logout",
+    },
+  ];
 
   // Close sidebar when clicking outside
   useEffect(() => {
@@ -13,6 +54,24 @@ const Navbar = () => {
         !e.target.closest(".menu-button")
       ) {
         setOpen(false);
+      }
+
+      // Close dropdown when clicking outside
+      if (
+        accountDropdown &&
+        !e.target.closest(".account-dropdown") &&
+        !e.target.closest(".account-button")
+      ) {
+        setaccountDropdown(false);
+      }
+
+      // Close mobile dropdown when clicking outside
+      if (
+        mobileAccountDropdown &&
+        !e.target.closest(".mobile-account-dropdown") &&
+        !e.target.closest(".mobile-account-button")
+      ) {
+        setMobileAccountDropdown(false);
       }
     };
 
@@ -40,7 +99,7 @@ const Navbar = () => {
       window.removeEventListener("resize", handleResize);
       document.body.style.overflow = "auto";
     };
-  }, [open]);
+  }, [open, accountDropdown, mobileAccountDropdown]);
 
   return (
     <>
@@ -154,6 +213,73 @@ const Navbar = () => {
                 alt="Cart"
               />
             </NavLink>
+            {/* {Show user icon} */}
+            {user && (
+              <div className="relative">
+                <div
+                  onClick={() => {
+                    setaccountDropdown(!accountDropdown);
+                  }}
+                  className="account-button cursor-pointer w-8 h-8 flex justify-center items-center rounded-full bg-[#F5F5F5]"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 32 32"
+                    fill="none"
+                  >
+                    <rect width="32" height="32" rx="16" fill="#DB4444" />
+                    <path
+                      d="M21 23V21.3333C21 20.4493 20.691 19.6014 20.1408 18.9763C19.5907 18.3512 18.8446 18 18.0667 18H12.9333C12.1554 18 11.4093 18.3512 10.8592 18.9763C10.309 19.6014 10 20.4493 10 21.3333V23"
+                      stroke="white"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M16 15C17.6569 15 19 13.6569 19 12C19 10.3431 17.6569 9 16 9C14.3431 9 13 10.3431 13 12C13 13.6569 14.3431 15 16 15Z"
+                      stroke="white"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </div>
+
+                {/* Dropdown with smooth animation */}
+                <div
+                  className={`account-dropdown absolute z-[100] right-0 top-12 w-56 rounded-[4px] bg-[rgba(0,0,0,0.04)] bg-clip-padding backdrop-blur-[70px] p-4 shadow-lg transform transition-all duration-300 ease-in-out origin-top ${
+                    accountDropdown
+                      ? "opacity-100 scale-y-100 translate-y-0"
+                      : "opacity-0 scale-y-0 -translate-y-2 pointer-events-none"
+                  }`}
+                >
+                  <div className="flex flex-col gap-3.5">
+                    {accountDropdownDetail.map((item, index) => (
+                      <ul
+                        key={index}
+                        className={`flex gap-4 text-white transform transition-all duration-200 ease-in-out ${
+                          accountDropdown
+                            ? "translate-y-0 opacity-100"
+                            : "translate-y-2 opacity-0"
+                        }`}
+                        style={{
+                          transitionDelay: accountDropdown
+                            ? `${index * 50}ms`
+                            : "0ms",
+                        }}
+                      >
+                        <img className="w-6 h-6" src={item.icon} alt="" />
+                        <li className="cursor-pointer hover:text-gray-300 transition-colors">
+                          {item.name}
+                        </li>
+                      </ul>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
           </ul>
         </div>
       </div>
@@ -246,9 +372,9 @@ const Navbar = () => {
           </ul>
         </div>
 
-        {/* Action Icons at bottom */}
+        {/* Action Icons and User Account at bottom */}
         <div className="p-4 border-t-2 border-gray-300 mt-auto">
-          <ul className="flex justify-center space-x-6">
+          <ul className="flex justify-center space-x-6 mb-4">
             <li>
               <svg
                 className="cursor-pointer"
@@ -277,6 +403,76 @@ const Navbar = () => {
               </NavLink>
             </li>
           </ul>
+
+          {/* Mobile User Account Section */}
+          {user && (
+            <div className="flex flex-col items-center">
+              <div
+                onClick={() => {
+                  setMobileAccountDropdown(!mobileAccountDropdown);
+                }}
+                className="mobile-account-button cursor-pointer w-10 h-10 flex justify-center items-center rounded-full bg-[#F5F5F5] mb-4"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  viewBox="0 0 32 32"
+                  fill="none"
+                >
+                  <rect width="32" height="32" rx="16" fill="#DB4444" />
+                  <path
+                    d="M21 23V21.3333C21 20.4493 20.691 19.6014 20.1408 18.9763C19.5907 18.3512 18.8446 18 18.0667 18H12.9333C12.1554 18 11.4093 18.3512 10.8592 18.9763C10.309 19.6014 10 20.4493 10 21.3333V23"
+                    stroke="white"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M16 15C17.6569 15 19 13.6569 19 12C19 10.3431 17.6569 9 16 9C14.3431 9 13 10.3431 13 12C13 13.6569 14.3431 15 16 15Z"
+                    stroke="white"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+
+              {/* Mobile Dropdown with smooth animation */}
+              <div
+                className={`mobile-account-dropdown w-full rounded-[4px] bg-[rgba(0,0,0,0.87)] border-[1px] border-b-[#a7a7a75b] bg-clip-padding backdrop-blur-[70px] p-4 shadow-lg transform transition-all duration-300 ease-in-out origin-top ${
+                  mobileAccountDropdown
+                    ? "opacity-100 scale-y-100 translate-y-0 max-h-96"
+                    : "opacity-0 scale-y-0 -translate-y-2 pointer-events-none max-h-0"
+                }`}
+              >
+                <div className="flex flex-col gap-3.5">
+                  {accountDropdownDetail.map((item, index) => (
+                    <div
+                      key={index}
+                      className={`flex gap-4  text-white transform transition-all duration-200 ease-in-out cursor-pointer hover:text-gray-600 ${
+                        mobileAccountDropdown
+                          ? "translate-y-0 opacity-100"
+                          : "translate-y-2 opacity-0"
+                      }`}
+                      style={{
+                        transitionDelay: mobileAccountDropdown
+                          ? `${index * 50}ms`
+                          : "0ms",
+                      }}
+                      onClick={() => {
+                        setOpen(false);
+                        setMobileAccountDropdown(false);
+                      }}
+                    >
+                      <img className="w-5 h-5" src={item.icon} alt="" />
+                      <span className="text-sm font-poppins">{item.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </>

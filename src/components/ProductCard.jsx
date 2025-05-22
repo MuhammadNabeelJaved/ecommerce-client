@@ -7,7 +7,6 @@ const ProductCard = ({ productsData, arrowState, category }) => {
   const [activeSlide, setActiveSlide] = useState(0);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
-  console.log(activeSlide);
   if (arrowState === "left") {
   }
   if (arrowState === "right") {
