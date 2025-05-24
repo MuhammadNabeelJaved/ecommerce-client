@@ -38,11 +38,12 @@ export const Status = () => {
             {statusData.map((category, index) => (
               <div
                 key={index}
-                className={`flex justify-center max-w-[170px] max-h-[145px] items-center px-14 py-6 border-[1px] border-[rgba(0, 0, 0, 0.30] rounded-[4px] cursor-pointer transition duration-300 ease-in-out text-white hover:bg-[#DB4444] hover:text-white `}
+                className={`flex justify-center h-[245px] max-w-[270px] max-h-[260px] items-center px-14 py-6 border-[1px] border-[rgba(0, 0, 0, 0.30] rounded-[4px] cursor-pointer transition duration-300 ease-in-out text-black hover:bg-[#DB4444] hover:text-white `}
               >
-                <div className="flex justify-center flex-col gap-4 items-center">
+                <div className="flex w-[100%] justify-center flex-col gap-4 items-center">
                   <img className="w-[56px]" src={category.icon} alt="" />
-                  <h2 className="text-lg font-semibold">{category.title}</h2>
+                  <h2 className="text-4xl font-semibold">{category.title}</h2>
+                  <p className="">{category.subTitle}</p>
                 </div>
               </div>
             ))}
