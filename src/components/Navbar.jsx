@@ -220,7 +220,7 @@ const Navbar = () => {
                   onClick={() => {
                     setaccountDropdown(!accountDropdown);
                   }}
-                  className="account-button cursor-pointer w-8 h-8 flex justify-center items-center rounded-full bg-[#F5F5F5]"
+                  className="account-button cursor-pointer w-8 h-8 flex justify-center items-center rounded-full bg-[#4e4e4e]"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

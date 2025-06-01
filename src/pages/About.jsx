@@ -3,6 +3,7 @@ import Breadcrumb from "../components/Breadcrumb";
 import AboutHero from "../components/AboutHero";
 import { Status } from "../components/Status";
 import Features from "../components/Features";
+import Team from "../components/Team";
 
 const About = () => {
   return (
@@ -11,6 +12,7 @@ const About = () => {
         <Breadcrumb />
         <AboutHero />
         <Status />
+        <Team />
         <Features />
       </div>
     </>
