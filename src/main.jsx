@@ -14,6 +14,7 @@ import Login from "./pages/Login.jsx";
 import Register from "./pages/SignUp.jsx";
 import ProductDetails from "./pages/Product.jsx";
 import PageNotFound from "./pages/PageNotFound.jsx";
+import Account from "./pages/Account.jsx";
 
 // w-full max-w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-[135px]
 const router = createBrowserRouter([
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
       {
         path: "/page-not-found",
         element: <PageNotFound />,
+      },
+      {
+        path: "/account",
+        element: <Account/>,
       },
     ],
   },
