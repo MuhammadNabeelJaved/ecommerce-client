@@ -249,7 +249,7 @@ const Navbar = () => {
 
                 {/* Dropdown with smooth animation */}
                 <div
-                  className={`account-dropdown absolute z-[100] right-0 top-12 w-56 rounded-[4px] bg-[rgba(0,0,0,0.04)] bg-clip-padding backdrop-blur-[70px] p-4 shadow-lg transform transition-all duration-300 ease-in-out origin-top ${
+                  className={`account-dropdown absolute z-[100] right-0 top-12 w-56 rounded-[4px] bg-[rgba(0,0,0,0.39)] bg-clip-padding backdrop-blur-[70px] p-4 shadow-lg transform transition-all duration-300 ease-in-out origin-top ${
                     accountDropdown
                       ? "opacity-100 scale-y-100 translate-y-0"
                       : "opacity-0 scale-y-0 -translate-y-2 pointer-events-none"
