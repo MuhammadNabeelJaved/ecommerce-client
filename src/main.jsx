@@ -12,7 +12,7 @@ import Cart from "./pages/Cart.jsx";
 import Checkout from "./pages/Checkout.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/SignUp.jsx";
-import ProductDetails from "./pages/Product.jsx";
+import Products from "./pages/Product.jsx";
 import PageNotFound from "./pages/PageNotFound.jsx";
 import Account from "./pages/Account.jsx";
 import Product from "./pages/Product.jsx";
@@ -53,8 +53,8 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: "/product/:id",
-        element: <ProductDetails />,
+        path: "/products",
+        element: <Products />,
       },
       {
         path: "/page-not-found",

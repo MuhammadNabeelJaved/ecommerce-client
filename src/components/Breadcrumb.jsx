@@ -15,19 +15,22 @@ const Breadcrumb = ({ user }) => {
 
   const filteredPathnames = pathnames.filter((segment, idx) => idx !== 2);
 
+  console.log("Filtered Pathnames:", filteredPathnames);
+
   const items = filteredPathnames.map((segment, index) => {
-    // id skip hone ke baad "to" ko sahi banana hoga
-    // original index nikalne ke liye ek helper bana lein
     const originalIndexes = pathnames
       .map((_, idx) => idx)
       .filter((idx) => idx !== 2);
+
     const to = `/${pathnames.slice(0, originalIndexes[index] + 1).join("/")}`;
 
-    // label logic
-    let label = segment;
-    if (params && Object.values(params).includes(segment)) {
-      label = segment;
-    }
+    // Decode URL encoded segment for label
+    let label = decodeURIComponent(segment);
+
+    // Replace hyphens with spaces for display
+    label = label.replace(/-/g, " ");
+
+    // Capitalize first letter
     label = capitalizeFirstLetter(label);
 
     return { label, to };
