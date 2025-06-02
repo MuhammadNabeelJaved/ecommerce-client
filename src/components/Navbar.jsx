@@ -17,7 +17,7 @@ const Navbar = () => {
       id: 1,
       icon: userIcon,
       name: "Manage My Account",
-      link: "/profile",
+      link: "/account",
     },
     {
       id: 1,
@@ -272,7 +272,7 @@ const Navbar = () => {
                       >
                         <img className="w-6 h-6" src={item.icon} alt="" />
                         <li className="cursor-pointer hover:text-gray-300 transition-colors">
-                          {item.name}
+                          <NavLink to={item.link}>{item.name}</NavLink>
                         </li>
                       </ul>
                     ))}
