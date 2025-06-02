@@ -10,7 +10,12 @@ const products = [
     inStock: true,
     stock: 150,
     reviews: 1283,
-    color: "black",
+    color: [
+      "Black",
+      "White",
+      "Blue",
+      "Red"
+    ],
     size: [
       "S",
       "M",
@@ -30,7 +35,12 @@ const products = [
     inStock: true,
     stock: 150,
     reviews: 1283,
-    color: "black",
+    color: [
+      "Black",
+      "White",
+      "Blue",
+      "Red"
+    ],
     size: [
       "S",
       "M",
@@ -50,7 +60,12 @@ const products = [
     inStock: true,
     stock: 150,
     reviews: 1283,
-    color: "black",
+    color: [
+      "Black",
+      "White",
+      "Blue",
+      "Red"
+    ],
     size: [
       "S",
       "M",
@@ -70,7 +85,12 @@ const products = [
     inStock: true,
     stock: 150,
     reviews: 1283,
-    color: "black",
+    color: [
+      "Black",
+      "White",
+      "Blue",
+      "Red"
+    ],
     size: [
       "S",
       "M",
@@ -90,7 +110,12 @@ const products = [
     inStock: true,
     stock: 150,
     reviews: 1283,
-    color: "black",
+    color: [
+      "Black",
+      "White",
+      "Blue",
+      "Red"
+    ],
     size: [
       "S",
       "M",
@@ -110,7 +135,12 @@ const products = [
     inStock: true,
     stock: 150,
     reviews: 1283,
-    color: "black",
+    color: [
+      "Black",
+      "White",
+      "Blue",
+      "Red"
+    ],
     size: [
       "S",
       "M",
@@ -130,7 +160,12 @@ const products = [
     inStock: true,
     stock: 150,
     reviews: 1283,
-    color: "black",
+    color: [
+      "Black",
+      "White",
+      "Blue",
+      "Red"
+    ],
     size: [
       "S",
       "M",
@@ -150,7 +185,12 @@ const products = [
     inStock: true,
     stock: 150,
     reviews: 1283,
-    color: "black",
+    color: [
+      "Black",
+      "White",
+      "Blue",
+      "Red"
+    ],
     size: [
       "S",
       "M",
@@ -170,7 +210,12 @@ const products = [
     inStock: true,
     stock: 150,
     reviews: 1283,
-    color: "black",
+    color: [
+      "Black",
+      "White",
+      "Blue",
+      "Red"
+    ],
     size: [
       "S",
       "M",
@@ -190,7 +235,12 @@ const products = [
     inStock: true,
     stock: 150,
     reviews: 1283,
-    color: "black",
+    color: [
+      "Black",
+      "White",
+      "Blue",
+      "Red"
+    ],
     size: [
       "S",
       "M",
