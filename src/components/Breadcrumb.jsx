@@ -13,17 +13,21 @@ const Breadcrumb = ({ user }) => {
 
   const pathnames = location.pathname.split("/").filter((x) => x);
 
-  const items = pathnames.map((segment, index) => {
-    const to = `/${pathnames.slice(0, index + 1).join("/")}`;
+  const filteredPathnames = pathnames.filter((segment, idx) => idx !== 2);
 
-    // Use params or default segment
+  const items = filteredPathnames.map((segment, index) => {
+    // id skip hone ke baad "to" ko sahi banana hoga
+    // original index nikalne ke liye ek helper bana lein
+    const originalIndexes = pathnames
+      .map((_, idx) => idx)
+      .filter((idx) => idx !== 2);
+    const to = `/${pathnames.slice(0, originalIndexes[index] + 1).join("/")}`;
+
+    // label logic
     let label = segment;
-
-    if (params && params[segment]) {
-      label = params[segment];
+    if (params && Object.values(params).includes(segment)) {
+      label = segment;
     }
-
-    // Capitalize first letter of label
     label = capitalizeFirstLetter(label);
 
     return { label, to };
