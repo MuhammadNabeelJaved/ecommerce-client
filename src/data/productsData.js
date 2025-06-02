@@ -6,6 +6,17 @@ const products = [
     rating: 4.7,
     reviews: 1283,
     category: "electronics",
+    description: "Experience superior sound quality with our Premium Wireless Headphones, designed for audiophiles and casual listeners alike.",
+    inStock: true,
+    stock: 150,
+    reviews: 1283,
+    color: "black",
+    size: [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
     image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&auto=format"
   },
   {
@@ -15,6 +26,17 @@ const products = [
     rating: 4.5,
     reviews: 952,
     category: "electronics",
+    description: "Experience superior sound quality with our Premium Wireless Headphones, designed for audiophiles and casual listeners alike.",
+    inStock: true,
+    stock: 150,
+    reviews: 1283,
+    color: "black",
+    size: [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
     image: "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=500&auto=format"
   },
   {
@@ -24,6 +46,17 @@ const products = [
     rating: 4.8,
     reviews: 745,
     category: "electronics",
+    description: "Experience superior sound quality with our Premium Wireless Headphones, designed for audiophiles and casual listeners alike.",
+    inStock: true,
+    stock: 150,
+    reviews: 1283,
+    color: "black",
+    size: [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
     image: "https://images.unsplash.com/photo-1505843490538-5133c6c7d0e1?w=500&auto=format"
   },
   {
@@ -33,6 +66,17 @@ const products = [
     rating: 4.6,
     reviews: 2105,
     category: "electronics",
+    description: "Experience superior sound quality with our Premium Wireless Headphones, designed for audiophiles and casual listeners alike.",
+    inStock: true,
+    stock: 150,
+    reviews: 1283,
+    color: "black",
+    size: [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
     image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=500&auto=format"
   },
   {
@@ -42,6 +86,17 @@ const products = [
     rating: 4.4,
     reviews: 1678,
     category: "electronics",
+    description: "Experience superior sound quality with our Premium Wireless Headphones, designed for audiophiles and casual listeners alike.",
+    inStock: true,
+    stock: 150,
+    reviews: 1283,
+    color: "black",
+    size: [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
     image: "https://images.unsplash.com/photo-1589003077984-894e133dabab?w=500&auto=format"
   },
   {
@@ -51,6 +106,17 @@ const products = [
     rating: 4.9,
     reviews: 421,
     category: "electronics",
+    description: "Experience superior sound quality with our Premium Wireless Headphones, designed for audiophiles and casual listeners alike.",
+    inStock: true,
+    stock: 150,
+    reviews: 1283,
+    color: "black",
+    size: [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
     image: "https://images.unsplash.com/photo-1572119865084-43c285814d63?w=500&auto=format"
   },
   {
@@ -60,6 +126,17 @@ const products = [
     rating: 4.7,
     reviews: 836,
     category: "electronics",
+    description: "Experience superior sound quality with our Premium Wireless Headphones, designed for audiophiles and casual listeners alike.",
+    inStock: true,
+    stock: 150,
+    reviews: 1283,
+    color: "black",
+    size: [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
     image: "https://images.unsplash.com/photo-1506784365847-bbad939e9335?w=500&auto=format"
   },
   {
@@ -69,6 +146,17 @@ const products = [
     rating: 4.8,
     reviews: 1432,
     category: "electronics",
+    description: "Experience superior sound quality with our Premium Wireless Headphones, designed for audiophiles and casual listeners alike.",
+    inStock: true,
+    stock: 150,
+    reviews: 1283,
+    color: "black",
+    size: [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
     image: "https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?w=500&auto=format"
   },
   {
@@ -78,6 +166,17 @@ const products = [
     rating: 4.3,
     reviews: 2571,
     category: "electronics",
+    description: "Experience superior sound quality with our Premium Wireless Headphones, designed for audiophiles and casual listeners alike.",
+    inStock: true,
+    stock: 150,
+    reviews: 1283,
+    color: "black",
+    size: [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
     image: "https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=500&auto=format"
   },
   {
@@ -87,6 +186,17 @@ const products = [
     rating: 4.6,
     reviews: 1089,
     category: "electronics",
+    description: "Experience superior sound quality with our Premium Wireless Headphones, designed for audiophiles and casual listeners alike.",
+    inStock: true,
+    stock: 150,
+    reviews: 1283,
+    color: "black",
+    size: [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
     image: "https://images.unsplash.com/photo-1580584126903-c17d41830450?w=500&auto=format"
   }
 ];
