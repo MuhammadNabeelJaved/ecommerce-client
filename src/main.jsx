@@ -60,7 +60,31 @@ const router = createBrowserRouter([
       },
       {
         path: "/account",
-        element: <Account/>,
+        element: <Account />,
+      },
+      {
+        path: "/account/address",
+        element: <Account />,
+      },
+      {
+        path: "/account/payments",
+        element: <Account />,
+      },
+      {
+        path: "/account/returns",
+        element: <Account />,
+      },
+      {
+        path: "/account/cancellations",
+        element: <Account />,
+      },
+      {
+        path: "/account/orders",
+        element: <Account />,
+      },
+      {
+        path: "/account/reviews",
+        element: <Account />,
       },
     ],
   },

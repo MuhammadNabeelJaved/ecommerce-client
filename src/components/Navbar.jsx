@@ -23,25 +23,25 @@ const Navbar = () => {
       id: 1,
       icon: orderIcon,
       name: "My Order",
-      link: "/orders",
+      link: "/account/orders",
     },
     {
       id: 1,
       icon: cancellIcon,
       name: "My Cancellations",
-      link: "/cancellations",
+      link: "/account/cancellations",
     },
     {
       id: 1,
       icon: reviewIcon,
       name: "My Reviews",
-      link: "/reviews",
+      link: "/account/reviews",
     },
     {
       id: 1,
       icon: logoutIcon,
       name: "Logout",
-      link: "/logout",
+      link: "/account/logout",
     },
   ];
 
