@@ -171,7 +171,9 @@ const ProductView = () => {
           </div>
         </div>
       </div>
-      <ProductsTitle topTitle="Related Item" productsData={relatedProducts} />
+      {relatedProducts && relatedProducts.length > 0 && (
+        <ProductsTitle topTitle="Related Item" productsData={relatedProducts} />
+      )}
     </>
   );
 };
