@@ -2,16 +2,32 @@ import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import ViewAllProductButton from "./ViewAllProductButton";
 import { NavLink } from "react-router";
+import { useParams, useLocation } from "react-router";
 
-const ProductCard = ({ productsData, arrowState, category }) => {
+const ProductCard = ({ productsData = [], arrowState, category }) => {
   const [currentProducts, setCurrentProducts] = useState([]);
   const [activeSlide, setActiveSlide] = useState(0);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const param = useParams();
+  const location = useLocation();
 
-  if (arrowState === "left") {
+  console.log("Params: ", location);
+
+  // Early return if productsData is not available or not an array
+  if (
+    !productsData ||
+    !Array.isArray(productsData) ||
+    productsData.length === 0
+  ) {
+    return (
+      <div className="w-full max-w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-[135px]">
+        <div className="flex items-center justify-center py-8">
+          <p className="text-gray-500">Loading products...</p>
+        </div>
+      </div>
+    );
   }
-  if (arrowState === "right") {
-  }
+
   const settings = {
     dots: false,
     infinite: true,
@@ -29,7 +45,7 @@ const ProductCard = ({ productsData, arrowState, category }) => {
       {
         breakpoint: 640,
         settings: {
-          arrows: false, // Hide arrows on smaller screens
+          arrows: false,
           swipe: true,
         },
       },
@@ -40,64 +56,81 @@ const ProductCard = ({ productsData, arrowState, category }) => {
     e.stopPropagation();
     console.log("ID: ", productId);
   };
+
   useEffect(() => {
+    // Check if productsData is available and is an array
+    if (!productsData || !Array.isArray(productsData)) {
+      console.error("productsData is not an array:", productsData);
+      return;
+    }
+
     // Shuffle the products array
     const shuffledProducts = [...productsData].sort(() => Math.random() - 0.5);
-
     // Select the first 4 products
     const selectedProducts = shuffledProducts.slice(0, 4);
 
-    if (category === "all") {
-      setCurrentProducts(productsData);
-    } else if (category === "featured") {
-      const featuredProducts = productsData.filter(
-        (product) => product.featured
-      );
-      setCurrentProducts(featuredProducts);
-    } else if (category === "best") {
-      const bestProducts = productsData.filter((product) => product.best);
-      setCurrentProducts(bestProducts);
-    } else if (category === "sale") {
-      const saleProducts = productsData.filter((product) => product.sale);
-      setCurrentProducts(saleProducts);
-    } else if (category === "new") {
-      const newProducts = productsData.filter((product) => product.new);
-      setCurrentProducts(newProducts);
-    } else if (category === "popular") {
-      const popularProducts = productsData.filter((product) => product.popular);
-      setCurrentProducts(popularProducts);
-    } else if (category === "trending") {
-      const trendingProducts = productsData.filter(
-        (product) => product.trending
-      );
-      setCurrentProducts(trendingProducts);
-    } else if (category === "random") {
-      const randomProducts = productsData.filter((product) => product.random);
-      setCurrentProducts(randomProducts);
-    } else if (category === "discount") {
-      const discountProducts = productsData.filter(
-        (product) => product.discount
-      );
-      setCurrentProducts(discountProducts);
-    } else if (category === "latest") {
-      const latestProducts = productsData.filter((product) => product.latest);
-      setCurrentProducts(latestProducts);
-    } else if (category === "top") {
-      const topProducts = productsData.filter((product) => product.top);
-      setCurrentProducts(topProducts);
-    } else {
-      setCurrentProducts(selectedProducts);
+    try {
+      switch (category) {
+        case "all":
+          setCurrentProducts(productsData);
+          break;
+        case "featured":
+          setCurrentProducts(
+            productsData.filter((product) => product.featured)
+          );
+          break;
+        case "best":
+          setCurrentProducts(productsData.filter((product) => product.best));
+          break;
+        case "sale":
+          setCurrentProducts(productsData.filter((product) => product.sale));
+          break;
+        case "new":
+          setCurrentProducts(productsData.filter((product) => product.new));
+          break;
+        case "popular":
+          setCurrentProducts(productsData.filter((product) => product.popular));
+          break;
+        case "trending":
+          setCurrentProducts(
+            productsData.filter((product) => product.trending)
+          );
+          break;
+        case "random":
+          setCurrentProducts(productsData.filter((product) => product.random));
+          break;
+        case "discount":
+          setCurrentProducts(
+            productsData.filter((product) => product.discount)
+          );
+          break;
+        case "latest":
+          setCurrentProducts(productsData.filter((product) => product.latest));
+          break;
+        case "top":
+          setCurrentProducts(productsData.filter((product) => product.top));
+          break;
+        default:
+          setCurrentProducts(selectedProducts);
+      }
+    } catch (error) {
+      console.error("Error filtering products:", error);
+      setCurrentProducts([]);
     }
-  }, [productsData]);
+  }, [productsData, category]);
+
   return (
     <>
       <div className="w-full max-w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-[135px]">
         <div className="flex flex-col items-center justify-center gap-4 mb-8">
           <div className="flex items-center flex-wrap gap-5 justify-center md:gap-8">
-            {currentProducts.map((product) => (
-              <div className="flex max-w-2xs flex-col items-start gap-5 justify-center">
+            {currentProducts.map((product, index) => (
+              <div
+                key={product.id || index}
+                className="flex max-w-2xs flex-col items-start gap-5 justify-center"
+              >
                 <div className="w-full h-48 overflow-hidden bg-gray-200 flex items-center justify-center relative">
-                  {/* Icons container ko absolute position dein */}
+                  {/* Icons container */}
                   <div className="absolute top-2 right-2 flex gap-2 bg-white bg-opacity-70 rounded p-1 shadow-md z-10">
                     <span className="flex justify-center items-center p-1">
                       <svg
@@ -117,11 +150,10 @@ const ProductCard = ({ productsData, arrowState, category }) => {
                     <NavLink
                       to={`/products/${product.category}/${product.id}/${product.title}`}
                       className="flex justify-center items-center p-1"
-                      key={product.id}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <span className="">
+                      <span>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="22"
@@ -144,17 +176,23 @@ const ProductCard = ({ productsData, arrowState, category }) => {
                     src={product.image}
                     alt={product.title}
                     className="w-full h-auto"
+                    onError={(e) => {
+                      e.target.src =
+                        "https://via.placeholder.com/300x200?text=No+Image";
+                    }}
                   />
                 </div>
 
                 <div className="flex items-start flex-col justify-between w-full gap-2">
-                  <h3 className="text-lg  font-[500]">
-                    {product.title.replace(/-/g, " ")}
+                  <h3 className="text-lg font-[500]">
+                    {product.title
+                      ? product.title.replace(/-/g, " ")
+                      : "No Title"}
                   </h3>
                   <p className="text-[#DB4444]">
-                    ${product.price} <s className="text-gray-400">$ 100</s>
+                    ${product.price || 0} <s className="text-gray-400">$ 100</s>
                   </p>
-                  <p className="flex items-center justify-center gap-2  font-[600]">
+                  <p className="flex items-center justify-center gap-2 font-[600]">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -166,10 +204,10 @@ const ProductCard = ({ productsData, arrowState, category }) => {
                         d="M14.673 7.17173C15.7437 6.36184 15.1709 4.65517 13.8284 4.65517H11.3992C10.7853 4.65517 10.243 4.25521 10.0617 3.66868L9.33754 1.32637C8.9309 0.0110567 7.0691 0.0110564 6.66246 1.32637L5.93832 3.66868C5.75699 4.25521 5.21469 4.65517 4.60078 4.65517H2.12961C0.791419 4.65517 0.215919 6.35274 1.27822 7.16654L3.39469 8.78792C3.85885 9.1435 4.05314 9.75008 3.88196 10.3092L3.11296 12.8207C2.71416 14.1232 4.22167 15.1704 5.30301 14.342L7.14861 12.9281C7.65097 12.5432 8.34903 12.5432 8.85139 12.9281L10.6807 14.3295C11.7636 15.159 13.2725 14.1079 12.8696 12.8046L12.09 10.2827C11.9159 9.71975 12.113 9.10809 12.5829 8.75263L14.673 7.17173Z"
                         fill="#FFAD33"
                       />
-                    </svg>{" "}
+                    </svg>
                     <div className="flex items-center justify-between gap-1">
                       <span className="text-black opacity-[0.6]">
-                        ({product.reviews})
+                        ({product.reviews || 0})
                       </span>
                       <svg
                         onClick={(e) => addToCart(e, product.id)}
@@ -179,9 +217,9 @@ const ProductCard = ({ productsData, arrowState, category }) => {
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                         className="lucide cursor-pointer lucide-shopping-cart-icon lucide-shopping-cart"
                       >
                         <circle cx="8" cy="21" r="1" />
@@ -194,7 +232,9 @@ const ProductCard = ({ productsData, arrowState, category }) => {
               </div>
             ))}
           </div>
-          <ViewAllProductButton title="View All Products" />
+          {location.pathname !== "/products" ? (
+            <ViewAllProductButton title="View All Products" />
+          ) : null}
         </div>
         <hr />
       </div>
