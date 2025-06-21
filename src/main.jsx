@@ -57,10 +57,6 @@ const router = createBrowserRouter([
         element: <Products />,
       },
       {
-        path: "/page-not-found",
-        element: <PageNotFound />,
-      },
-      {
         path: "/account",
         element: <Account />,
       },
@@ -91,6 +87,10 @@ const router = createBrowserRouter([
       {
         path: "/products/:category/:id/:name",
         element: <ProductsViews />,
+      },
+      {
+        path: "/products/:category",
+        element: <Products />,
       },
       // Wildcard route to catch all unmatched routes
       {

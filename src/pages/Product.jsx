@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import Breadcrumb from "../components/Breadcrumb";
 import productsData from "../data/productsData.js";
 import ProductCard from "../components/ProductCard.jsx";
+import { useParams } from "react-router";
 
 const Products = () => {
   const [allProducts, setAllProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { category } = useParams();
+  console.log("Category from params:", category);
 
   useEffect(() => {
     try {
@@ -17,11 +20,11 @@ const Products = () => {
 
       // Handle different data structures
       let products = [];
-      
+
       if (Array.isArray(productsData)) {
         // If it's already an array
         products = productsData;
-      } else if (typeof productsData === 'object') {
+      } else if (typeof productsData === "object") {
         // If it's an object with products array
         if (productsData.products && Array.isArray(productsData.products)) {
           products = productsData.products;
@@ -31,6 +34,15 @@ const Products = () => {
         }
       } else {
         throw new Error("Products data is not in expected format");
+      }
+
+      // Filter products by category if specified
+      if (category && category !== "all") {
+        products = products.filter((product) => product.category === category);
+      }
+      // Set the products to state
+      if (products.length === 0) {
+        throw new Error("No products found for the specified category");
       }
 
       setAllProducts(products);
