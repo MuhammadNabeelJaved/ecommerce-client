@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router";
 
 const ErrorPage = () => {
   return (
@@ -11,9 +12,12 @@ const ErrorPage = () => {
           <p className="font-[400] font-poppins">
             Your visited page not found. You may go home page.
           </p>
-          <button className="bg-[#DB4444] text-white rounded-[4px] px-12 py-4 cursor-pointer hover:bg-[#ff8686fd] transition-all duration-300 ease-in-out">
+          <NavLink
+            to={`/`}
+            className="bg-[#DB4444] text-white rounded-[4px] px-12 py-4 cursor-pointer hover:bg-[#ff8686fd] transition-all duration-300 ease-in-out"
+          >
             Back to home page
-          </button>
+          </NavLink>
         </div>
       </div>
     </>

@@ -92,6 +92,11 @@ const router = createBrowserRouter([
         path: "/products/:category/:id/:name",
         element: <ProductsViews />,
       },
+      // Wildcard route to catch all unmatched routes
+      {
+        path: "*",
+        element: <PageNotFound />,
+      },
     ],
   },
 ]);
