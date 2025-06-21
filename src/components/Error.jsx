@@ -1,9 +1,11 @@
-import React from 'react';
-import { AlertTriangle, RefreshCw, Home, ArrowLeft } from 'lucide-react';
+import React from "react";
+import { AlertTriangle, RefreshCw, Home, ArrowLeft } from "lucide-react";
 
-const ErrorPage = () => {
+const ErrorPage = ({ error }) => {
   // Sample error for demonstration - you can pass this as props
-  const error = "Failed to load data. Please check your internet connection and try again.";
+  console.log("Error:", error);
+  const errors =
+    "Failed to load data. Please check your internet connection and try again.";
 
   const handleRefresh = () => {
     window.location.reload();
@@ -28,8 +30,12 @@ const ErrorPage = () => {
             <div className="inline-flex items-center justify-center w-20 h-20 bg-white/20 rounded-full mb-4 animate-pulse">
               <AlertTriangle className="w-10 h-10 text-white" />
             </div>
-            <h1 className="text-3xl font-bold text-white mb-2">Oops! Something went wrong</h1>
-            <p className="text-red-100 text-lg">We encountered an unexpected error</p>
+            <h1 className="text-3xl font-bold text-white mb-2">
+              Oops! Something went wrong
+            </h1>
+            <p className="text-red-100 text-lg">
+              We encountered an unexpected error
+            </p>
           </div>
 
           {/* Error Message Section */}
@@ -38,15 +44,21 @@ const ErrorPage = () => {
               <div className="flex items-start space-x-3">
                 <AlertTriangle className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" />
                 <div>
-                  <h3 className="text-sm font-semibold text-red-800 mb-1">Error Details:</h3>
-                  <p className="text-red-700 text-sm leading-relaxed">{error}</p>
+                  <h3 className="text-sm font-semibold text-red-800 mb-1">
+                    Error Details:
+                  </h3>
+                  <p className="text-red-700 text-sm leading-relaxed">
+                    {errors}
+                  </p>
                 </div>
               </div>
             </div>
 
             {/* Helpful Information */}
             <div className="mb-8">
-              <h3 className="text-lg font-semibold text-gray-800 mb-4">What you can try:</h3>
+              <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                What you can try:
+              </h3>
               <ul className="space-y-3 text-gray-600">
                 <li className="flex items-start space-x-3">
                   <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
@@ -76,7 +88,7 @@ const ErrorPage = () => {
                 <RefreshCw className="w-5 h-5" />
                 <span>Try Again</span>
               </button>
-              
+
               <button
                 onClick={handleGoBack}
                 className="flex items-center justify-center space-x-2 bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
@@ -84,7 +96,7 @@ const ErrorPage = () => {
                 <ArrowLeft className="w-5 h-5" />
                 <span>Go Back</span>
               </button>
-              
+
               <button
                 onClick={handleGoHome}
                 className="flex items-center justify-center space-x-2 border-2 border-gray-300 hover:border-gray-400 text-gray-700 hover:text-gray-800 px-6 py-3 rounded-lg font-semibold transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
@@ -100,22 +112,22 @@ const ErrorPage = () => {
         <div className="mt-8 text-center">
           <p className="text-gray-600 mb-4">Still having trouble?</p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm">
-            <a 
-              href="mailto:support@example.com" 
+            <a
+              href="mailto:support@example.com"
               className="text-blue-600 hover:text-blue-700 font-medium transition-colors duration-200"
             >
               Contact Support
             </a>
             <span className="hidden sm:inline text-gray-400">•</span>
-            <a 
-              href="/help" 
+            <a
+              href="/help"
               className="text-blue-600 hover:text-blue-700 font-medium transition-colors duration-200"
             >
               Help Center
             </a>
             <span className="hidden sm:inline text-gray-400">•</span>
-            <a 
-              href="/status" 
+            <a
+              href="/status"
               className="text-blue-600 hover:text-blue-700 font-medium transition-colors duration-200"
             >
               Service Status

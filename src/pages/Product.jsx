@@ -3,6 +3,7 @@ import Breadcrumb from "../components/Breadcrumb";
 import productsData from "../data/productsData.js";
 import ProductCard from "../components/ProductCard.jsx";
 import { useParams } from "react-router";
+import { AlertTriangle } from "lucide-react";
 
 const Products = () => {
   const [allProducts, setAllProducts] = useState([]);
@@ -73,7 +74,19 @@ const Products = () => {
     return (
       <div className="w-full max-w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-[135px]">
         <div className="flex items-center justify-center py-8">
-          <p className="text-red-500">Error: {error}</p>
+          <div className="bg-red-50 border border-red-200 rounded-lg p-6 max-w-md w-full">
+            <div className="flex items-start space-x-3">
+              <div className="flex-shrink-0">
+                <AlertTriangle className="w-6 h-6 text-red-500" />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-sm font-semibold text-red-800 mb-1">
+                  Error
+                </h3>
+                <p className="text-red-700 text-sm leading-relaxed">{error}</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );
