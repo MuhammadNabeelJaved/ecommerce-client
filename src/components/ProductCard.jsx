@@ -8,6 +8,7 @@ const ProductCard = ({ productsData = [], arrowState, category }) => {
   const [currentProducts, setCurrentProducts] = useState([]);
   const [activeSlide, setActiveSlide] = useState(0);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [likedProducts, setLikedProducts] = useState(new Set()); // Track liked products
   const param = useParams();
   const location = useLocation();
 
@@ -55,6 +56,24 @@ const ProductCard = ({ productsData = [], arrowState, category }) => {
   const addToCart = (e, productId) => {
     e.stopPropagation();
     console.log("ID: ", productId);
+  };
+
+  // Handle heart click with smooth animation
+  const toggleHeart = (e, productId) => {
+    e.stopPropagation();
+    e.preventDefault();
+    
+    setLikedProducts(prev => {
+      const newLiked = new Set(prev);
+      if (newLiked.has(productId)) {
+        newLiked.delete(productId);
+      } else {
+        newLiked.add(productId);
+      }
+      return newLiked;
+    });
+    
+    console.log("Heart clicked for product:", productId);
   };
 
   useEffect(() => {
@@ -132,17 +151,24 @@ const ProductCard = ({ productsData = [], arrowState, category }) => {
                 <div className="w-full h-48 overflow-hidden bg-gray-200 flex items-center justify-center relative">
                   {/* Icons container */}
                   <div className="absolute top-2 right-2 flex gap-2 bg-white bg-opacity-70 rounded p-1 shadow-md z-10">
-                    <span className="flex justify-center items-center p-1">
+                    <span 
+                      className="flex justify-center items-center p-1 cursor-pointer"
+                      onClick={(e) => toggleHeart(e, product.id)}
+                    >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
                         height="24"
                         viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="black"
+                        fill={likedProducts.has(product.id) ? "#ef4444" : "none"}
+                        stroke={likedProducts.has(product.id) ? "#ef4444" : "black"}
                         strokeWidth="1.5"
                         strokeLinecap="round"
                         strokeLinejoin="round"
+                        className="transition-all duration-300 ease-in-out transform hover:scale-110"
+                        style={{
+                          filter: likedProducts.has(product.id) ? 'drop-shadow(0 2px 4px rgba(239, 68, 68, 0.3))' : 'none'
+                        }}
                       >
                         <path d="M8 5C5.7912 5 4 6.73964 4 8.88594C4 10.6185 4.7 14.7305 11.5904 18.8873C11.7138 18.961 11.8555 19 12 19C12.1445 19 12.2862 18.961 12.4096 18.8873C19.3 14.7305 20 10.6185 20 8.88594C20 6.73964 18.2088 5 16 5C13.7912 5 12 7.35511 12 7.35511C12 7.35511 10.2088 5 8 5Z" />
                       </svg>

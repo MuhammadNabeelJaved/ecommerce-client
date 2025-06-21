@@ -11,6 +11,7 @@ const ProductView = () => {
   const [selectedSize, setselectedSize] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [relatedProducts, setRelatedProducts] = useState([]);
+  const [isLiked, setIsLiked] = useState(false); // Heart toggle state
 
   console.log("relatedProducts", relatedProducts);
 
@@ -20,6 +21,14 @@ const ProductView = () => {
 
   const handleIncrease = () => {
     setQuantity(quantity + 1);
+  };
+
+  // Handle heart click with smooth animation
+  const toggleHeart = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    setIsLiked(!isLiked);
+    console.log("Heart clicked for product:", filterdProduct.id);
   };
 
   useEffect(() => {
@@ -145,18 +154,30 @@ const ProductView = () => {
               Buy Now
             </button>
 
-            {/* Heart Icon */}
-            <span className="p-2 border border-black rounded cursor-pointer">
+            {/* Heart Icon with Toggle Animation */}
+            <span 
+              className="p-2 border border-black rounded cursor-pointer transition-all duration-300 ease-in-out hover:scale-105"
+              onClick={toggleHeart}
+              style={{
+                borderColor: isLiked ? "#ef4444" : "black",
+                backgroundColor: isLiked ? "#fef2f2" : "transparent",
+                boxShadow: isLiked ? "0 2px 8px rgba(239, 68, 68, 0.2)" : "none"
+              }}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="28"
                 height="28"
                 viewBox="0 0 32 32"
-                fill="none"
+                fill={isLiked ? "#ef4444" : "none"}
+                className="transition-all duration-300 ease-in-out"
+                style={{
+                  filter: isLiked ? 'drop-shadow(0 2px 4px rgba(239, 68, 68, 0.3))' : 'none'
+                }}
               >
                 <path
                   d="M11 7C8.239 7 6 9.216 6 11.95C6 14.157 6.875 19.395 15.488 24.69C15.6423 24.7839 15.8194 24.8335 16 24.8335C16.1806 24.8335 16.3577 24.7839 16.512 24.69C25.125 19.395 26 14.157 26 11.95C26 9.216 23.761 7 21 7C18.239 7 16 10 16 10C16 10 13.761 7 11 7Z"
-                  stroke="black"
+                  stroke={isLiked ? "#ef4444" : "black"}
                   strokeWidth="1.5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
